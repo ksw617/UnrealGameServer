@@ -9,7 +9,6 @@ void PacketHandler::Init()
 	for (int i = 0; i < UINT16_MAX; i++)
 	{
 		packetHandlers[i] = Handle_INVALID;
-
 	}
 }
 

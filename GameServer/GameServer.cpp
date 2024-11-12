@@ -5,9 +5,6 @@
 #include <IocpCore.h>
 
 #include "ClientSession.h"
-#include "ClientPacketHandler.h"
-
-
 
 #define THREAD_COUNT 5
 
@@ -34,8 +31,6 @@ static void ExecuteTask(shared_ptr<ServerService>& service)
 int main()
 {
 	printf("============= Server =============\n");
-
-	ClientPacketHandler::Init();
 
 	shared_ptr<ServerService> service = make_shared<ServerService>(L"127.0.0.1", 27015, []() {return make_shared<ClientSession>(); });
 

@@ -2,21 +2,16 @@
 #include "ServerSession.h"
 
 #include "Protocol.pb.h"
-#include "ServerPacketHandler.h"
+
 
 void ServerSession::OnConnected()
 {
-    Protocol::C_LOGIN packet;
-    auto sendBuffer = ServerPacketHandler::MakeSendBuffer(packet);
-    Send(sendBuffer);
-    
+    printf("OnConneted\n");
+
 }
 
 int ServerSession::OnRecvPacket(BYTE* buffer, int len)
 {
-    shared_ptr<PacketSession> session = GetPacketSession();
-    ServerPacketHandler::HandlePacket(session, buffer, len);
-
     return len;
 }
 

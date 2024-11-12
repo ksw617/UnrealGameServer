@@ -4,15 +4,12 @@
 
 #include "ServerSession.h"
 
-#include "ServerPacketHandler.h"
-
 #include <locale>
 #include <codecvt>
 #include <string>
 
 int main()
 {
-    ServerPacketHandler::Init();
 
 
     this_thread::sleep_for(1s);
@@ -42,25 +39,6 @@ int main()
         }
     );
 
-    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-
-
-    while (true)
-    {
-        wchar_t msg[100];
-        wprintf(L"Enter message: ");
-        wscanf_s(L"%s", msg, sizeof(msg) / sizeof(wchar_t));  // UTF-16로 입력받음
-
-        // UTF-16(wchar_t*) -> UTF-8(std::string) 변환
-        std::string utf8Msg = converter.to_bytes(msg);
-
-        // 패킷에 UTF-8 문자열 설정
-        Protocol::C_CHAT chatPacket;
-        chatPacket.set_msg(utf8Msg);  // UTF-8로 설정
-        auto sendBuffer = ServerPacketHandler::MakeSendBuffer(chatPacket);
-
-        clientService->GetSession()->Send(sendBuffer);
-    }
 
     t.join();
 

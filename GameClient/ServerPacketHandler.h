@@ -6,7 +6,7 @@ enum : uint16
 {
 	C_LOGIN = 0,
 	S_LOGIN = 1,
-
+	C_ENTER_GAME = 2,
 };
 
 //Recv
@@ -21,5 +21,6 @@ public:
 	//Send
 	//클라이언트가 보낼 패킷들 정리
 	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_Login& packet) { return PacketHandler::MakeSendBuffer(packet, C_LOGIN); }
+	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_EnterGame& packet) { return PacketHandler::MakeSendBuffer(packet, C_ENTER_GAME); }
 };
 

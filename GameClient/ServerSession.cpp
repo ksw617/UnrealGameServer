@@ -5,7 +5,7 @@
 #include "ServerPacketHandler.h"
 
 
-void ServerSession::OnConnected()
+void ServerSession::OnConnected                             ()
 {
     printf("OnConneted\n");
 

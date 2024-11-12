@@ -7,12 +7,14 @@ enum : uint16
 {
 	C_LOGIN = 0,
 	S_LOGIN = 1,
+	C_ENTER_GAME = 2,
 
 };
 
 //Recv
 //클라에서 C_LOGIN을 보냈을때 여기서 호출되는
 bool Handle_C_LOGIN(shared_ptr<PacketSession>& session, Protocol::C_Login& packet);
+bool Handle_C_ENTER_GAME(shared_ptr<PacketSession>& session, Protocol::C_EnterGame& packet);
 
 class ClientPacketHandler : public PacketHandler
 {

@@ -4,14 +4,10 @@
 #include "Protocol.pb.h"
 #include "ServerPacketHandler.h"
 
-
-void ServerSession::OnConnected                             ()
+//Client
+void ServerSession::OnConnected()
 {
     printf("OnConneted\n");
-
-    Protocol::C_Login packet;
-    auto sendBuffer = ServerPacketHandler::MakeSendBuffer(packet);
-    Send(sendBuffer);
 
 }
 

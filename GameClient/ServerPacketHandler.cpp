@@ -22,24 +22,12 @@ bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 
 bool Handle_S_LOGIN(shared_ptr<PacketSession>& session, Protocol::S_Login& packet)
 {
-	if (!packet.success())
-	{
-		session->Disconnect(L"Refused");
-		return false;
-	}
-
-	printf("Handle_S_LOGIN\n");
-	Protocol::C_EnterGame sendPacket;
-
-	Protocol::Player* player = new Protocol::Player;
-	player->set_id(packet.playerid());
-	player->set_name("TEST");
-
-	sendPacket.set_allocated_player(player);
-
+	//패킷 구조체
+	Protocol::C_Login sendPacket;
+	//패킷을 보낼수있게 바이트 단위로 변환
 	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(sendPacket);
+
+	//해당 버퍼 보내기
 	session->Send(sendBuffer);
-
-
 	return true;
 }

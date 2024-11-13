@@ -9,6 +9,14 @@ void ServerSession::OnConnected()
 {
     printf("OnConneted\n");
 
+    Protocol::C_Login sendPack;
+    sendPack.set_name("Kwak");
+    sendPack.set_id("QWER");
+    sendPack.set_pw("qwer123");
+
+    auto sendBuffer = ServerPacketHandler::MakeSendBuffer(sendPack);
+    Send(sendBuffer);
+
 }
 
 int ServerSession::OnRecvPacket(BYTE* buffer, int len)

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "ClientPacketHandler.h"
+#include "GameManager.h"
 
 void ClientPacketHandler::Init()
 {
@@ -20,8 +21,10 @@ bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 
 bool Handle_C_LOGIN(shared_ptr<PacketSession>& session, Protocol::C_Login& packet)
 {
-	printf("¿©±â·Î ¿È\n");
+	printf("Name : %s, ID : %s, PW : %s", packet.name().c_str(), packet.id().c_str(), packet.pw().c_str());
 	
+	GameManager::Get().playerName.insert(packet.name().c_str());
+	//Todo
 	return true;
 }
 

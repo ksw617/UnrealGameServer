@@ -14,6 +14,9 @@
     <Filter Include="Protobuf">
       <UniqueIdentifier>{8d84b33d-5347-4a5c-a6d4-9769ff77a0b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameManager">
+      <UniqueIdentifier>{db46fac4-47b8-4e56-9699-59626717f289}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameClient.cpp">
@@ -31,6 +34,9 @@
     <ClCompile Include="ServerPacketHandler.cpp">
       <Filter>Session</Filter>
     </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>GameManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -44,6 +50,9 @@
     </ClInclude>
     <ClInclude Include="ServerPacketHandler.h">
       <Filter>Session</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>GameManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

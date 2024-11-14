@@ -8,6 +8,7 @@
 #include <locale>
 #include <codecvt>
 #include <string>
+#include "GameManager.h"
 
 int main()
 {
@@ -41,6 +42,13 @@ int main()
         }
     );
 
+    GameManager gameManager;
+
+    gameManager.BeginPlay();
+    while (true)
+    {
+        gameManager.Tick();
+    }
 
     t.join();
 

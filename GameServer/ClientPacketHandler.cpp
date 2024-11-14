@@ -29,9 +29,8 @@ bool Handle_C_LOGIN(shared_ptr<PacketSession>& session, Protocol::C_Login& packe
 	wstring_convert<codecvt_utf8<wchar_t>> converter;
 	wstring name = converter.from_bytes(text);
 	cout << "Name : ";
-	std::wcout.imbue(std::locale("Korean_Korea.949"));
-
-	std::wcout << name << std::endl;
+	wcout.imbue(locale("Korean_Korea.949"));
+	wcout << name << endl;
 
 	return true;
 }

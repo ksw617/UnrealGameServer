@@ -4,17 +4,25 @@
 #include "Protocol.pb.h"
 #include "ServerPacketHandler.h"
 
+#include <locale>
+#include <codecvt>
+#include <string>
+
 //Client
 void ServerSession::OnConnected()
 {
+   
     printf("OnConneted\n");
 
-    Protocol::C_Login sendPack;
-    sendPack.set_name("Kwak");
-    sendPack.set_id("QWER");
-    sendPack.set_pw("qwer123");
+    Protocol::C_Login sendPacket;
 
-    auto sendBuffer = ServerPacketHandler::MakeSendBuffer(sendPack);
+    wstring text = L"한글";
+    wstring_convert<codecvt_utf8<wchar_t>> converter;
+    string utf8Msg = converter.to_bytes(text);
+
+    sendPacket.set_name(utf8Msg);  // UTF-8로 설정
+
+    auto sendBuffer = ServerPacketHandler::MakeSendBuffer(sendPacket);
     Send(sendBuffer);
 
 }

@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "ClientPacketHandler.h"
-#include "GameManager.h"
+
+#include <locale>
+#include <codecvt>
+#include <string>
 
 void ClientPacketHandler::Init()
 {
@@ -21,10 +24,15 @@ bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 
 bool Handle_C_LOGIN(shared_ptr<PacketSession>& session, Protocol::C_Login& packet)
 {
-	printf("Name : %s, ID : %s, PW : %s", packet.name().c_str(), packet.id().c_str(), packet.pw().c_str());
-	
-	GameManager::Get().playerName.insert(packet.name().c_str());
-	//Todo
+	string text = packet.name();
+
+	wstring_convert<codecvt_utf8<wchar_t>> converter;
+	wstring name = converter.from_bytes(text);
+	cout << "Name : ";
+	std::wcout.imbue(std::locale("Korean_Korea.949"));
+
+	std::wcout << name << std::endl;
+
 	return true;
 }
 

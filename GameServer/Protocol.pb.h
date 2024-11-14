@@ -183,8 +183,6 @@ class C_Login final :
 
   enum : int {
     kNameFieldNumber = 1,
-    kIdFieldNumber = 2,
-    kPwFieldNumber = 3,
   };
   // string name = 1;
   void clear_name();
@@ -200,34 +198,6 @@ class C_Login final :
   std::string* _internal_mutable_name();
   public:
 
-  // string id = 2;
-  void clear_id();
-  const std::string& id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_id();
-  PROTOBUF_NODISCARD std::string* release_id();
-  void set_allocated_id(std::string* id);
-  private:
-  const std::string& _internal_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
-  std::string* _internal_mutable_id();
-  public:
-
-  // string pw = 3;
-  void clear_pw();
-  const std::string& pw() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_pw(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_pw();
-  PROTOBUF_NODISCARD std::string* release_pw();
-  void set_allocated_pw(std::string* pw);
-  private:
-  const std::string& _internal_pw() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_pw(const std::string& value);
-  std::string* _internal_mutable_pw();
-  public:
-
   // @@protoc_insertion_point(class_scope:Protocol.C_Login)
  private:
   class _Internal;
@@ -237,8 +207,6 @@ class C_Login final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr pw_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -421,106 +389,6 @@ inline void C_Login::set_allocated_name(std::string* name) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Protocol.C_Login.name)
-}
-
-// string id = 2;
-inline void C_Login::clear_id() {
-  _impl_.id_.ClearToEmpty();
-}
-inline const std::string& C_Login::id() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_Login.id)
-  return _internal_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void C_Login::set_id(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_Login.id)
-}
-inline std::string* C_Login::mutable_id() {
-  std::string* _s = _internal_mutable_id();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_Login.id)
-  return _s;
-}
-inline const std::string& C_Login::_internal_id() const {
-  return _impl_.id_.Get();
-}
-inline void C_Login::_internal_set_id(const std::string& value) {
-  
-  _impl_.id_.Set(value, GetArenaForAllocation());
-}
-inline std::string* C_Login::_internal_mutable_id() {
-  
-  return _impl_.id_.Mutable(GetArenaForAllocation());
-}
-inline std::string* C_Login::release_id() {
-  // @@protoc_insertion_point(field_release:Protocol.C_Login.id)
-  return _impl_.id_.Release();
-}
-inline void C_Login::set_allocated_id(std::string* id) {
-  if (id != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.id_.SetAllocated(id, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.id_.IsDefault()) {
-    _impl_.id_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_Login.id)
-}
-
-// string pw = 3;
-inline void C_Login::clear_pw() {
-  _impl_.pw_.ClearToEmpty();
-}
-inline const std::string& C_Login::pw() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_Login.pw)
-  return _internal_pw();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void C_Login::set_pw(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.pw_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_Login.pw)
-}
-inline std::string* C_Login::mutable_pw() {
-  std::string* _s = _internal_mutable_pw();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_Login.pw)
-  return _s;
-}
-inline const std::string& C_Login::_internal_pw() const {
-  return _impl_.pw_.Get();
-}
-inline void C_Login::_internal_set_pw(const std::string& value) {
-  
-  _impl_.pw_.Set(value, GetArenaForAllocation());
-}
-inline std::string* C_Login::_internal_mutable_pw() {
-  
-  return _impl_.pw_.Mutable(GetArenaForAllocation());
-}
-inline std::string* C_Login::release_pw() {
-  // @@protoc_insertion_point(field_release:Protocol.C_Login.pw)
-  return _impl_.pw_.Release();
-}
-inline void C_Login::set_allocated_pw(std::string* pw) {
-  if (pw != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.pw_.SetAllocated(pw, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.pw_.IsDefault()) {
-    _impl_.pw_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_Login.pw)
 }
 
 // -------------------------------------------------------------------

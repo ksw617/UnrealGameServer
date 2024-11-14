@@ -1,17 +1,12 @@
 syntax = "proto3";
 package Protocol;
 
-
-
 message C_Login
 {
 	string name = 1;
-	string id = 2;
-	string pw = 3;
-	//Todo
 }
 
 message S_Login
 {
-	//Todo
+
 }

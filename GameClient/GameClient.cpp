@@ -42,12 +42,11 @@ int main()
         }
     );
 
-    GameManager gameManager;
 
-    gameManager.BeginPlay();
+    GameManager::Get().BeginPlay();
     while (true)
     {
-        gameManager.Tick();
+        GameManager::Get().Tick();
     }
 
     t.join();

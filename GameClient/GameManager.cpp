@@ -4,11 +4,12 @@
 #include "Protocol.pb.h"
 #include "ServerPacketHandler.h"
 
+#include "ServerSession.h"
+
 #include <locale>
 #include <codecvt>
 #include <string>
 
-bool GameManager::IsConnected = false;
 
 void GameManager::BeginPlay()
 {
@@ -34,7 +35,18 @@ void GameManager::Tick()
         sendPacket.set_name(utf8Msg);
 
         auto sendBuffer = ServerPacketHandler::MakeSendBuffer(sendPacket);
-        //어떻게 구현할껀지 내일 같이 해봅시다.
-        //Send(sendBuffer);
+ 
+        auto serverSession = GetSession();
+        if (serverSession != nullptr)
+        {
+            GetSession()->Send(sendBuffer);
+        }
+
 	}
+}
+
+void GameManager::IsConnectedServer(shared_ptr<ServerSession> serverSession)
+{
+    IsConnected = true;
+    session = serverSession;
 }

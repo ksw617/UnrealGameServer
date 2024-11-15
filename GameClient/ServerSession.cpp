@@ -9,7 +9,7 @@
 void ServerSession::OnConnected()
 {
     printf("OnConneted\n");
-    GameManager::IsConnected = true;
+    GameManager::Get().IsConnectedServer(reinterpret_pointer_cast<ServerSession>(shared_from_this()));
 
 }
 

@@ -16,7 +16,7 @@ public:
 	GameManager& operator= (const GameManager&) = delete;
 
 private:
-	bool IsConnected = false;
+	atomic<bool> IsConnected = false;
 	weak_ptr<ServerSession> session;
 public:
 	shared_ptr<ServerSession> GetSession() { return session.lock(); }

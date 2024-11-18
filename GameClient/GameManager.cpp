@@ -17,7 +17,7 @@ void GameManager::BeginPlay()
 
 void GameManager::Tick()
 {
-	if (IsConnected)
+	if (IsConnected.load())
 	{
 
         Protocol::C_Login sendPacket;
@@ -47,6 +47,6 @@ void GameManager::Tick()
 
 void GameManager::IsConnectedServer(shared_ptr<ServerSession> serverSession)
 {
-    IsConnected = true;
+    IsConnected.store(true);
     session = serverSession;
 }

@@ -1,12 +1,62 @@
 syntax = "proto3";
 package Protocol;
 
-message C_Login
+message Player
 {
 	string name = 1;
+	int type = 2;
+}
+
+message C_Login
+{
+	string id = 1;
+	string pw = 2;
 }
 
 message S_Login
 {
+	bool success = 1;
+	repeated int roomID = 2;
+}
 
+message C_Register
+{
+	string id = 1;
+	string pw = 2;
+	string name = 3;
+}
+
+message S_Register
+{
+	bool success = 1;
+}
+
+message C_EnterRoom
+{
+	int roomID = 1; 
+}
+
+message S_EnterRoom
+{
+	bool success = 1;
+}
+
+message C_EnterGame
+{
+	Player player = 1;
+}
+
+message S_EnterGame
+{
+	repeated Player player = 1; 
+}
+
+message C_Chat
+{
+	string msg = 1;
+}
+
+message S_Chat
+{
+	string msg = 1;
 }

@@ -1,19 +1,12 @@
 #pragma once
+#include "Singleton.h"
 class ServerSession;
-class GameManager
+class GameManager : public Singleton<GameManager>
 {
+	friend class Singleton<GameManager>;
 private:
 	GameManager() = default;
 	~GameManager() = default;
-public:
-	static GameManager& Get()
-	{
-		static GameManager instance;
-		return instance;
-	}
-public:
-	GameManager(const GameManager&) = delete;
-	GameManager& operator= (const GameManager&) = delete;
 
 private:
 	atomic<bool> IsConnected = false;

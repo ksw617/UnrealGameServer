@@ -24,13 +24,20 @@ bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 
 bool Handle_C_LOGIN(shared_ptr<PacketSession>& session, Protocol::C_Login& packet)
 {
-	string text = packet.name();
+	string id = packet.id();
+	string pw = packet.pw();
 
 	wstring_convert<codecvt_utf8<wchar_t>> converter;
-	wstring name = converter.from_bytes(text);
-	cout << "Name : ";
+	wstring textId = converter.from_bytes(id);
+	wstring textPw = converter.from_bytes(pw);
 	wcout.imbue(locale("Korean_Korea.949"));
-	wcout << name << endl;
+
+	cout << "ID : ";
+
+	wcout << textId << endl;
+
+	cout << "PW : ";
+	wcout << textPw << endl;
 
 	return true;
 }

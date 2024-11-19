@@ -14,8 +14,20 @@
     <Filter Include="Protobuf">
       <UniqueIdentifier>{8d84b33d-5347-4a5c-a6d4-9769ff77a0b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameManager">
+    <Filter Include="00_Manager">
+      <UniqueIdentifier>{5e628b09-9a8d-4858-83f0-3fc919d0b3e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00_Manager\00_GameManager">
       <UniqueIdentifier>{db46fac4-47b8-4e56-9699-59626717f289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00_Manager\01_SceneManager">
+      <UniqueIdentifier>{a9533c7c-25b4-4772-96f7-bf188023b6f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scene">
+      <UniqueIdentifier>{aac54896-dce5-478a-ad43-57b6eac1892c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scene\00_Login">
+      <UniqueIdentifier>{f7d84755-921d-45ef-a77c-3abef2b1a750}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -35,7 +47,19 @@
       <Filter>Session</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
-      <Filter>GameManager</Filter>
+      <Filter>00_Manager\00_GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>00_Manager\01_SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>01_Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Login.cpp">
+      <Filter>01_Scene\00_Login</Filter>
+    </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>00_Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,7 +76,19 @@
       <Filter>Session</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
-      <Filter>GameManager</Filter>
+      <Filter>00_Manager\00_GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>00_Manager\01_SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>01_Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
+      <Filter>01_Scene\00_Login</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>00_Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

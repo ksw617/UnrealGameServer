@@ -9,39 +9,20 @@
 #include <locale>
 #include <codecvt>
 #include <string>
+#include "SceneManager.h"
 
 
 void GameManager::BeginPlay()
 {
+    SceneManager& sceneManager = SceneManager::Get();
+	SceneManager::Get().LoardScene(SCENE_ID::LOGIN);
 }
 
 void GameManager::Tick()
 {
 	if (IsConnected.load())
 	{
-
-        Protocol::C_Login sendPacket;
-
-        wcin.imbue(locale("Korean_Korea.949"));
-        wcout.imbue(locale("Korean_Korea.949"));
-
-        wcout << L"이름을 입력하세요: ";
-        wstring text;
-        wcin >> text;  // wstring 입력 받기
-
-        wstring_convert<codecvt_utf8<wchar_t>> converter;
-        string utf8Msg = converter.to_bytes(text);
-
-        sendPacket.set_name(utf8Msg);
-
-        auto sendBuffer = ServerPacketHandler::MakeSendBuffer(sendPacket);
- 
-        auto serverSession = GetSession();
-        if (serverSession != nullptr)
-        {
-            GetSession()->Send(sendBuffer);
-        }
-
+		SceneManager::Get().Tick();
 	}
 }
 

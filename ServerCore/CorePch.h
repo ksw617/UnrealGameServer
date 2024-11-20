@@ -4,7 +4,7 @@ using namespace std;
 
 
 #pragma region STL
-#include <vector>
+#include <vector>				   
 #include <list>
 #include <queue>
 #include <stack>

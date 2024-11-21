@@ -3,7 +3,7 @@
 
 void Loading::Init()
 {
-	printf("Loading...");
+	printf("Loading...\n");
 }
 
 void Loading::Tick()

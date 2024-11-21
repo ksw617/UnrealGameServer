@@ -1,9 +1,8 @@
 #include "pch.h"
 #include "ClientPacketHandler.h"
 
-#include <locale>
-#include <codecvt>
-#include <string>
+#include "GameManager.h"
+#include "ClientPacketHandler.h"
 
 void ClientPacketHandler::Init()
 {
@@ -13,6 +12,10 @@ void ClientPacketHandler::Init()
 	packetHandlers[C_LOGIN] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 		{
 			return HandlePacket<Protocol::C_Login>(Handle_C_LOGIN, session, buffer, len);
+		};
+	packetHandlers[C_REGISTER] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
+		{
+			return HandlePacket<Protocol::C_Register>(Handle_C_REGISTER, session, buffer, len);
 		};
 }
 
@@ -25,28 +28,33 @@ bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 bool Handle_C_LOGIN(shared_ptr<PacketSession>& session, Protocol::C_Login& packet)
 {
 	string id = packet.id();
-	string pw = packet.pw();
+	string pw = packet.pw(); 
 
-	//wstring_convert<codecvt_utf8<wchar_t>> converter;
-	//wstring textId = converter.from_bytes(id);
-	//wstring textPw = converter.from_bytes(pw);
-	//wcout.imbue(locale("Korean_Korea.949"));
+	Protocol::S_Login sendPacket;
 
-	//cout << "ID : ";
-	//
-	//cout << textId << endl;
-	//
-	//cout << "PW : ";
-	//cout << textPw << endl;
+	bool success = GameManager::Get().CheckUser(id);
+	
+	if (success)
+	{
+		success = (pw == GameManager::Get().GetPW(id));
+	}
+
+	sendPacket.set_success(success);
+
+	auto sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
+	session->Send(sendBuffer);
 	
 
-	cout << "ID : ";
-
-	cout << id << endl;
-
-	cout << "PW : ";
-	cout << pw << endl;
-
 	return true;
+}
+
+bool Handle_C_REGISTER(shared_ptr<PacketSession>& session, Protocol::C_Register& packet)
+{
+	string id = packet.id();
+	string pw = packet.pw();
+	string name = packet.name();
+	bool success = GameManager::Get().CheckUser(id);
+	//Todo
+	return false;
 }
 			 

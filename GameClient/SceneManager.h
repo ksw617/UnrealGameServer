@@ -4,7 +4,10 @@
 //uint8 == unsigned char	//512°³ Å©±â 1byte
 enum class SCENE_ID : uint8
 {
+	LOADING,
 	LOGIN,
+	REGISTER,
+	ENTERGAME,
 
 };
 

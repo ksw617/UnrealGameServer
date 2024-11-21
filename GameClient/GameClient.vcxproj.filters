@@ -26,8 +26,17 @@
     <Filter Include="01_Scene">
       <UniqueIdentifier>{aac54896-dce5-478a-ad43-57b6eac1892c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01_Scene\00_Login">
+    <Filter Include="01_Scene\01_Login">
       <UniqueIdentifier>{f7d84755-921d-45ef-a77c-3abef2b1a750}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scene\02_Register">
+      <UniqueIdentifier>{fb8b36e8-899b-4f0d-b213-9ed83dab1b33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scene\03_EnterGame">
+      <UniqueIdentifier>{dc77adb8-e395-4add-903d-97ce863e200c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scene\00_Loding">
+      <UniqueIdentifier>{3fd4ef90-b30c-4708-ab71-ebd53137859c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -56,10 +65,19 @@
       <Filter>01_Scene</Filter>
     </ClCompile>
     <ClCompile Include="Login.cpp">
-      <Filter>01_Scene\00_Login</Filter>
+      <Filter>01_Scene\01_Login</Filter>
     </ClCompile>
     <ClCompile Include="Singleton.cpp">
       <Filter>00_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Register.cpp">
+      <Filter>01_Scene\02_Register</Filter>
+    </ClCompile>
+    <ClCompile Include="EnterGame.cpp">
+      <Filter>01_Scene\03_EnterGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Loading.cpp">
+      <Filter>01_Scene\00_Loding</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,10 +103,19 @@
       <Filter>01_Scene</Filter>
     </ClInclude>
     <ClInclude Include="Login.h">
-      <Filter>01_Scene\00_Login</Filter>
+      <Filter>01_Scene\01_Login</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>00_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Register.h">
+      <Filter>01_Scene\02_Register</Filter>
+    </ClInclude>
+    <ClInclude Include="EnterGame.h">
+      <Filter>01_Scene\03_EnterGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Loading.h">
+      <Filter>01_Scene\00_Loding</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

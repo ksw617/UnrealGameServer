@@ -6,11 +6,15 @@ enum : uint16
 {
 	C_LOGIN = 0,
 	S_LOGIN = 1,
+	C_REGISTER = 2,
+	S_REGISTER = 3,
+
 };
 
 //Recv
 //서버에서 S_LOGIN을 보냈을때 여기서 호출되는
 bool Handle_S_LOGIN(shared_ptr<PacketSession>& session, Protocol::S_Login& packet);
+bool Handle_S_REGISTER(shared_ptr<PacketSession>& session, Protocol::S_Register& packet);
 
 class ServerPacketHandler : public PacketHandler
 {
@@ -20,6 +24,7 @@ public:
 	//Send
 	//클라이언트가 보낼 패킷들 정리
 	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_Login& packet) { return PacketHandler::MakeSendBuffer(packet, C_LOGIN); }
+	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_Register& packet) { return PacketHandler::MakeSendBuffer(packet, C_REGISTER); }
 
 };
 

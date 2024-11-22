@@ -19,11 +19,15 @@ private:
 	~GameManager() = default;
 private:
 	shared_mutex rwLock;
-	map<string, UserInfo> users;
+	map<string, shared_ptr<UserInfo>> users;
+	set<shared_ptr<class Player>> players;
 public:
 	bool CheckUser(string id);
 	void AddUser(string id, string pw, string name);
 	void RemoveUser(string id);
+public:
+	void AddPlayer(shared_ptr<class Player>& player);
+
 public:
 	string GetPW(string id);
 

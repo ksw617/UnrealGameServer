@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "GameManager.h"
+#include "Player.h"
 
 bool GameManager::CheckUser(string id)
 {
@@ -21,8 +22,36 @@ void GameManager::RemoveUser(string id)
     users.erase(id);
 }
 
+void GameManager::AddPlayer(shared_ptr<class Player>& player)
+{
+    cout << "Name : ";
+    wcout.imbue(locale("Korean_Korea.949"));
+    wcout << player->name << endl;
+
+    switch (player->playerType)     
+    {
+    case PLAYER_TYPE::ARCHER:
+        cout << "ARCHER" << endl;
+        break;
+    case PLAYER_TYPE::KNIGHT:
+        cout << "KNIGHT" << endl;
+        break;
+    case PLAYER_TYPE::WIZARD:
+        cout << "WIZARD" << endl;
+        break;
+    case PLAYER_TYPE::PRIEST:
+        cout << "PRIEST" << endl;
+        break;
+    default:
+        break;
+    }
+
+
+    players.emplace(player);
+}
+
 string GameManager::GetPW(string id)
 {
     shared_lock<shared_mutex> lock(rwLock);
-    return users[id].pw;
+    return users[id]->pw;
 }

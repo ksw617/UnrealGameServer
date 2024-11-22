@@ -19,6 +19,12 @@
     <Filter Include="00_Manager\00_GameManager">
       <UniqueIdentifier>{e173ec4a-4654-4e78-b497-a0b923178819}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Game">
+      <UniqueIdentifier>{aa4717c3-6d5f-47d7-9168-c7d975536443}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Game\00_Player">
+      <UniqueIdentifier>{ce6a19fc-7d4f-4d92-9e54-91bad93ddd83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp">
@@ -42,6 +48,9 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>00_Manager\00_GameManager</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>01_Game\00_Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -61,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>00_Manager\00_GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>01_Game\00_Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

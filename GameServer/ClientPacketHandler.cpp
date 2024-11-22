@@ -4,6 +4,12 @@
 #include "GameManager.h"
 #include "ClientPacketHandler.h"
 
+#include <locale>
+#include <codecvt>
+#include <string>
+
+#include "Player.h"
+
 void ClientPacketHandler::Init()
 {
 	PacketHandler::Init();
@@ -16,6 +22,11 @@ void ClientPacketHandler::Init()
 	packetHandlers[C_REGISTER] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 		{
 			return HandlePacket<Protocol::C_Register>(Handle_C_REGISTER, session, buffer, len);
+		};
+
+	packetHandlers[C_ENTERGAME] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
+		{
+			return HandlePacket<Protocol::C_EnterGame>(Handle_C_ENTERGAME, session, buffer, len);
 		};
 }
 
@@ -51,10 +62,40 @@ bool Handle_C_LOGIN(shared_ptr<PacketSession>& session, Protocol::C_Login& packe
 bool Handle_C_REGISTER(shared_ptr<PacketSession>& session, Protocol::C_Register& packet)
 {
 	string id = packet.id();
-	string pw = packet.pw();
-	string name = packet.name();
-	bool success = GameManager::Get().CheckUser(id);
+
+	Protocol::S_Register sendPacket;
+
+	bool success = !GameManager::Get().CheckUser(id);
+
+	if (success)
+	{
+		string pw = packet.pw();
+		string name = packet.name();
+
+		//Ãß°¡
+		GameManager::Get().AddUser(id, pw, name);
+	}
+
+	sendPacket.set_success(success);
+
+	auto sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
+	session->Send(sendBuffer);
+	
+	return true;
+}
+
+bool Handle_C_ENTERGAME(shared_ptr<PacketSession>& session, Protocol::C_EnterGame& packet)
+{
 	//Todo
-	return false;
+	auto& p = packet.player();
+
+	wstring_convert<codecvt_utf8<wchar_t>> converter;
+	wstring name = converter.from_bytes(p.name());
+	
+	shared_ptr<Player> player = make_shared<Player>(session, name, (PLAYER_TYPE)p.type());
+	GameManager::Get().AddPlayer(player);
+
+
+	return true;
 }
 			 

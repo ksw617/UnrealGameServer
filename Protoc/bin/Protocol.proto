@@ -32,11 +32,14 @@ message S_Register
 
 message C_EnterGame
 {
+	Player player = 1;
 }
 
 message S_EnterGame
 {
 	bool success = 1;
+	int32 playerIndex = 2;
+
 }
 
 message C_EnterRoom

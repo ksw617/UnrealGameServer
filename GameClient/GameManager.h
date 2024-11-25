@@ -11,6 +11,11 @@ private:
 private:
 	atomic<bool> IsConnected = false;
 	weak_ptr<ServerSession> session;
+private:
+	int id = 0;
+public:
+	int GetID() const { return id; }
+	void SetID(int _id) { id = _id; }
 public:
 	shared_ptr<ServerSession> GetSession() { return session.lock(); }
 public:

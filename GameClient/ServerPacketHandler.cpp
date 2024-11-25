@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "ServerPacketHandler.h"
 
-#include "SceneManager.h"
+#include "SceneManager.h" 
+#include "GameManager.h"
 
 
 void ServerPacketHandler::Init()
@@ -61,6 +62,11 @@ bool Handle_S_REGISTER(shared_ptr<PacketSession>& session, Protocol::S_Register&
 
 bool Handle_S_ENTERGAME(shared_ptr<PacketSession>& session, Protocol::S_EnterGame& packet)
 {
+	if (packet.success())
+	{
+		GameManager::Get().SetID(packet.playerindex());
+		printf("Player Enter");
+	}
 
 	//Todo
 	return false;

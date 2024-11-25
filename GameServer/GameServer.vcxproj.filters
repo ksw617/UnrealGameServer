@@ -25,6 +25,9 @@
     <Filter Include="01_Game\00_Player">
       <UniqueIdentifier>{ce6a19fc-7d4f-4d92-9e54-91bad93ddd83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Game\01_GameRoom">
+      <UniqueIdentifier>{8e777264-50d9-4016-ad31-5104f2179f79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp">
@@ -51,6 +54,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>01_Game\00_Player</Filter>
     </ClCompile>
+    <ClCompile Include="GameRoom.cpp">
+      <Filter>01_Game\01_GameRoom</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -73,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>01_Game\00_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRoom.h">
+      <Filter>01_Game\01_GameRoom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

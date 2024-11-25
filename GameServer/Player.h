@@ -14,6 +14,11 @@ enum class PLAYER_TYPE : uint8
 class Session;
 class Player
 {
+private:
+	int playerID = 0;
+public:
+	int GetPlayerID() const { return playerID; }
+	void SetPlayerID(int id) { playerID = id; }
 public:
 	weak_ptr<Session> session;
 public:

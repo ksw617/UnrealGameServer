@@ -39,7 +39,6 @@ message S_EnterGame
 {
 	bool success = 1;
 	int32 playerIndex = 2;
-
 }
 
 message C_EnterRoom

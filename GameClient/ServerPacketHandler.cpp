@@ -23,6 +23,11 @@ void ServerPacketHandler::Init()
 		{
 			return HandlePacket<Protocol::S_EnterGame>(Handle_S_ENTERGAME, session, buffer, len);
 		};
+
+	packetHandlers[S_ENTERROOM] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
+		{
+			return HandlePacket<Protocol::S_EnterRoom>(Handle_S_ENTERROOM, session, buffer, len);
+		};
 }
 
 
@@ -36,11 +41,11 @@ bool Handle_S_LOGIN(shared_ptr<PacketSession>& session, Protocol::S_Login& packe
 {
 	if (packet.success())
 	{
-		SceneManager::Get().LoardScene(SCENE_ID::ENTERGAME);
+		SceneManager::Get().LoadScene(SCENE_ID::ENTERGAME);
 	}
 	else
 	{
-		SceneManager::Get().LoardScene(SCENE_ID::REGISTER);
+		SceneManager::Get().LoadScene(SCENE_ID::REGISTER);
 	}
 
 	return true;
@@ -50,11 +55,11 @@ bool Handle_S_REGISTER(shared_ptr<PacketSession>& session, Protocol::S_Register&
 {
 	if (packet.success())
 	{
-		SceneManager::Get().LoardScene(SCENE_ID::LOGIN);
+		SceneManager::Get().LoadScene(SCENE_ID::LOGIN);
 	}
 	else
 	{
-		SceneManager::Get().LoardScene(SCENE_ID::REGISTER);
+		SceneManager::Get().LoadScene(SCENE_ID::REGISTER);
 	}
 
 	return true;
@@ -65,9 +70,18 @@ bool Handle_S_ENTERGAME(shared_ptr<PacketSession>& session, Protocol::S_EnterGam
 	if (packet.success())
 	{
 		GameManager::Get().SetID(packet.playerindex());
-		printf("Player Enter");
+
+		for (auto& value : packet.roomids())
+		{
+			GameManager::Get().SetGameRoom(value);
+		}
+		SceneManager::Get().LoadScene(SCENE_ID::SELECTROOM);
 	}
 
-	//Todo
+	return true;
+}
+
+bool Handle_S_ENTERROOM(shared_ptr<PacketSession>& session, Protocol::S_EnterRoom& packet)
+{
 	return false;
 }

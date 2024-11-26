@@ -38,6 +38,9 @@
     <Filter Include="01_Scene\00_Loding">
       <UniqueIdentifier>{3fd4ef90-b30c-4708-ab71-ebd53137859c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Scene\04_SelectRoom">
+      <UniqueIdentifier>{9daa08a3-5121-4ce8-aaca-6245f578e8ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameClient.cpp">
@@ -79,6 +82,9 @@
     <ClCompile Include="Loading.cpp">
       <Filter>01_Scene\00_Loding</Filter>
     </ClCompile>
+    <ClCompile Include="SelectRoom.cpp">
+      <Filter>01_Scene\04_SelectRoom</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -116,6 +122,9 @@
     </ClInclude>
     <ClInclude Include="Loading.h">
       <Filter>01_Scene\00_Loding</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectRoom.h">
+      <Filter>01_Scene\04_SelectRoom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -51,5 +51,5 @@ void EnterGame::Tick()
        serverSession->Send(sendBuffer);
    }
    
-   SceneManager::Get().LoardScene(SCENE_ID::LOADING);
+   SceneManager::Get().LoadScene(SCENE_ID::LOADING);
 }

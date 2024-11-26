@@ -8,7 +8,7 @@ enum class SCENE_ID : uint8
 	LOGIN,
 	REGISTER,
 	ENTERGAME,
-
+	SELECTROOM,
 };
 
 
@@ -22,7 +22,7 @@ private:
 private:
 	shared_ptr<class Scene> scene = nullptr;
 public:
-	void LoardScene(SCENE_ID id);
+	void LoadScene(SCENE_ID id);
 	void Tick();
 };
 

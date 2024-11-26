@@ -28,6 +28,11 @@ void ClientPacketHandler::Init()
 		{
 			return HandlePacket<Protocol::C_EnterGame>(Handle_C_ENTERGAME, session, buffer, len);
 		};
+
+	packetHandlers[C_ENTERROOM] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
+		{
+			return HandlePacket<Protocol::C_EnterRoom>(Handle_C_ENTERROOM, session, buffer, len);
+		};
 }
 
 bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
@@ -97,5 +102,11 @@ bool Handle_C_ENTERGAME(shared_ptr<PacketSession>& session, Protocol::C_EnterGam
 
 
 	return true;
+}
+
+bool Handle_C_ENTERROOM(shared_ptr<PacketSession>& session, Protocol::C_EnterRoom& packet)
+{
+	cout << "Handle_C_ENTERROOM" << endl;
+	return false;
 }
 			 

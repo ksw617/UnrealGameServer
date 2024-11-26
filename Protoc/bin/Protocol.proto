@@ -39,11 +39,13 @@ message S_EnterGame
 {
 	bool success = 1;
 	int32 playerIndex = 2;
+	repeated int32 roomIDs = 3;
 }
 
 message C_EnterRoom
 {
-	Player player = 1;
+	int32 playerIndex = 1;
+	int32 roomID = 2;
 }
 
 message S_EnterRoom

@@ -9,10 +9,11 @@ void GameManager::Init()
 {
 
     gameRooms.resize(3);   //[0][1][2]
-    gameRooms.push_back(make_shared<GameRoom>());  //[0]
-    gameRooms.push_back(make_shared<GameRoom>());  //[1]
-    gameRooms.push_back(make_shared<GameRoom>());  //[2]
 
+    for (int i = 0; i < gameRooms.size(); i++)
+    {
+        gameRooms[i] = make_shared<GameRoom>();
+    }
 }
 
 bool GameManager::CheckUser(string id)
@@ -48,6 +49,10 @@ void GameManager::AddPlayer(shared_ptr<class Player>& player)
     sendPacket.set_success(true);
     sendPacket.set_playerindex(player->GetPlayerID());
 
+    for (int i = 0; i < gameRooms.size(); i++)
+    {
+        sendPacket.add_roomids(i);
+    }
 
     auto sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
     

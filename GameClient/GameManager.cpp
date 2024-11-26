@@ -15,7 +15,7 @@
 void GameManager::BeginPlay()
 {
     SceneManager& sceneManager = SceneManager::Get();
-	SceneManager::Get().LoardScene(SCENE_ID::LOGIN);
+	SceneManager::Get().LoadScene(SCENE_ID::LOGIN);
 }
 
 void GameManager::Tick()

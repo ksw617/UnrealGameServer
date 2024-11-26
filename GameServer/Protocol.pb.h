@@ -1188,9 +1188,32 @@ class S_EnterGame final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kRoomIDsFieldNumber = 3,
     kSuccessFieldNumber = 1,
     kPlayerIndexFieldNumber = 2,
   };
+  // repeated int32 roomIDs = 3;
+  int roomids_size() const;
+  private:
+  int _internal_roomids_size() const;
+  public:
+  void clear_roomids();
+  private:
+  int32_t _internal_roomids(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      _internal_roomids() const;
+  void _internal_add_roomids(int32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      _internal_mutable_roomids();
+  public:
+  int32_t roomids(int index) const;
+  void set_roomids(int index, int32_t value);
+  void add_roomids(int32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      roomids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      mutable_roomids();
+
   // bool success = 1;
   void clear_success();
   bool success() const;
@@ -1217,6 +1240,8 @@ class S_EnterGame final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > roomids_;
+    mutable std::atomic<int> _roomids_cached_byte_size_;
     bool success_;
     int32_t playerindex_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -1347,25 +1372,26 @@ class C_EnterRoom final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPlayerFieldNumber = 1,
+    kPlayerIndexFieldNumber = 1,
+    kRoomIDFieldNumber = 2,
   };
-  // .Protocol.Player player = 1;
-  bool has_player() const;
+  // int32 playerIndex = 1;
+  void clear_playerindex();
+  int32_t playerindex() const;
+  void set_playerindex(int32_t value);
   private:
-  bool _internal_has_player() const;
+  int32_t _internal_playerindex() const;
+  void _internal_set_playerindex(int32_t value);
   public:
-  void clear_player();
-  const ::Protocol::Player& player() const;
-  PROTOBUF_NODISCARD ::Protocol::Player* release_player();
-  ::Protocol::Player* mutable_player();
-  void set_allocated_player(::Protocol::Player* player);
+
+  // int32 roomID = 2;
+  void clear_roomid();
+  int32_t roomid() const;
+  void set_roomid(int32_t value);
   private:
-  const ::Protocol::Player& _internal_player() const;
-  ::Protocol::Player* _internal_mutable_player();
+  int32_t _internal_roomid() const;
+  void _internal_set_roomid(int32_t value);
   public:
-  void unsafe_arena_set_allocated_player(
-      ::Protocol::Player* player);
-  ::Protocol::Player* unsafe_arena_release_player();
 
   // @@protoc_insertion_point(class_scope:Protocol.C_EnterRoom)
  private:
@@ -1375,7 +1401,8 @@ class C_EnterRoom final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::Protocol::Player* player_;
+    int32_t playerindex_;
+    int32_t roomid_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2369,98 +2396,95 @@ inline void S_EnterGame::set_playerindex(int32_t value) {
   // @@protoc_insertion_point(field_set:Protocol.S_EnterGame.playerIndex)
 }
 
+// repeated int32 roomIDs = 3;
+inline int S_EnterGame::_internal_roomids_size() const {
+  return _impl_.roomids_.size();
+}
+inline int S_EnterGame::roomids_size() const {
+  return _internal_roomids_size();
+}
+inline void S_EnterGame::clear_roomids() {
+  _impl_.roomids_.Clear();
+}
+inline int32_t S_EnterGame::_internal_roomids(int index) const {
+  return _impl_.roomids_.Get(index);
+}
+inline int32_t S_EnterGame::roomids(int index) const {
+  // @@protoc_insertion_point(field_get:Protocol.S_EnterGame.roomIDs)
+  return _internal_roomids(index);
+}
+inline void S_EnterGame::set_roomids(int index, int32_t value) {
+  _impl_.roomids_.Set(index, value);
+  // @@protoc_insertion_point(field_set:Protocol.S_EnterGame.roomIDs)
+}
+inline void S_EnterGame::_internal_add_roomids(int32_t value) {
+  _impl_.roomids_.Add(value);
+}
+inline void S_EnterGame::add_roomids(int32_t value) {
+  _internal_add_roomids(value);
+  // @@protoc_insertion_point(field_add:Protocol.S_EnterGame.roomIDs)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+S_EnterGame::_internal_roomids() const {
+  return _impl_.roomids_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+S_EnterGame::roomids() const {
+  // @@protoc_insertion_point(field_list:Protocol.S_EnterGame.roomIDs)
+  return _internal_roomids();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+S_EnterGame::_internal_mutable_roomids() {
+  return &_impl_.roomids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+S_EnterGame::mutable_roomids() {
+  // @@protoc_insertion_point(field_mutable_list:Protocol.S_EnterGame.roomIDs)
+  return _internal_mutable_roomids();
+}
+
 // -------------------------------------------------------------------
 
 // C_EnterRoom
 
-// .Protocol.Player player = 1;
-inline bool C_EnterRoom::_internal_has_player() const {
-  return this != internal_default_instance() && _impl_.player_ != nullptr;
+// int32 playerIndex = 1;
+inline void C_EnterRoom::clear_playerindex() {
+  _impl_.playerindex_ = 0;
 }
-inline bool C_EnterRoom::has_player() const {
-  return _internal_has_player();
+inline int32_t C_EnterRoom::_internal_playerindex() const {
+  return _impl_.playerindex_;
 }
-inline void C_EnterRoom::clear_player() {
-  if (GetArenaForAllocation() == nullptr && _impl_.player_ != nullptr) {
-    delete _impl_.player_;
-  }
-  _impl_.player_ = nullptr;
+inline int32_t C_EnterRoom::playerindex() const {
+  // @@protoc_insertion_point(field_get:Protocol.C_EnterRoom.playerIndex)
+  return _internal_playerindex();
 }
-inline const ::Protocol::Player& C_EnterRoom::_internal_player() const {
-  const ::Protocol::Player* p = _impl_.player_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Protocol::Player&>(
-      ::Protocol::_Player_default_instance_);
-}
-inline const ::Protocol::Player& C_EnterRoom::player() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_EnterRoom.player)
-  return _internal_player();
-}
-inline void C_EnterRoom::unsafe_arena_set_allocated_player(
-    ::Protocol::Player* player) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.player_);
-  }
-  _impl_.player_ = player;
-  if (player) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.C_EnterRoom.player)
-}
-inline ::Protocol::Player* C_EnterRoom::release_player() {
+inline void C_EnterRoom::_internal_set_playerindex(int32_t value) {
   
-  ::Protocol::Player* temp = _impl_.player_;
-  _impl_.player_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
+  _impl_.playerindex_ = value;
 }
-inline ::Protocol::Player* C_EnterRoom::unsafe_arena_release_player() {
-  // @@protoc_insertion_point(field_release:Protocol.C_EnterRoom.player)
+inline void C_EnterRoom::set_playerindex(int32_t value) {
+  _internal_set_playerindex(value);
+  // @@protoc_insertion_point(field_set:Protocol.C_EnterRoom.playerIndex)
+}
+
+// int32 roomID = 2;
+inline void C_EnterRoom::clear_roomid() {
+  _impl_.roomid_ = 0;
+}
+inline int32_t C_EnterRoom::_internal_roomid() const {
+  return _impl_.roomid_;
+}
+inline int32_t C_EnterRoom::roomid() const {
+  // @@protoc_insertion_point(field_get:Protocol.C_EnterRoom.roomID)
+  return _internal_roomid();
+}
+inline void C_EnterRoom::_internal_set_roomid(int32_t value) {
   
-  ::Protocol::Player* temp = _impl_.player_;
-  _impl_.player_ = nullptr;
-  return temp;
+  _impl_.roomid_ = value;
 }
-inline ::Protocol::Player* C_EnterRoom::_internal_mutable_player() {
-  
-  if (_impl_.player_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Protocol::Player>(GetArenaForAllocation());
-    _impl_.player_ = p;
-  }
-  return _impl_.player_;
-}
-inline ::Protocol::Player* C_EnterRoom::mutable_player() {
-  ::Protocol::Player* _msg = _internal_mutable_player();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_EnterRoom.player)
-  return _msg;
-}
-inline void C_EnterRoom::set_allocated_player(::Protocol::Player* player) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete _impl_.player_;
-  }
-  if (player) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(player);
-    if (message_arena != submessage_arena) {
-      player = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, player, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.player_ = player;
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_EnterRoom.player)
+inline void C_EnterRoom::set_roomid(int32_t value) {
+  _internal_set_roomid(value);
+  // @@protoc_insertion_point(field_set:Protocol.C_EnterRoom.roomID)
 }
 
 // -------------------------------------------------------------------

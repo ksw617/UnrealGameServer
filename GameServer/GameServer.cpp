@@ -6,6 +6,7 @@
 
 #include "ClientSession.h"
 #include "ClientPacketHandler.h"
+#include "GameManager.h"
 
 #define THREAD_COUNT 5
 
@@ -31,6 +32,7 @@ static void ExecuteTask(shared_ptr<ServerService>& service)
 
 int main()
 {
+	GameManager::Get().Init(); // √ ±‚»≠
 	ClientPacketHandler::Init();
 
 	printf("============= Server =============\n");

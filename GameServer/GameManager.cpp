@@ -38,8 +38,9 @@ void GameManager::RemoveUser(string id)
 void GameManager::AddPlayer(shared_ptr<class Player>& player)
 {
     unique_lock<shared_mutex> lock(rwLock);
-    InGameplayers.emplace(player);
     player->SetPlayerID(++playerIndex);
+    inGameplayers.emplace(player->GetPlayerID(), player);
+   
 
     printf("Player ID : %d\n", player->GetPlayerID());
 
@@ -65,9 +66,10 @@ void GameManager::AddPlayer(shared_ptr<class Player>& player)
 
 }
 
-void GameManager::EnterGame(int index, shared_ptr<Player>& player)
+void GameManager::EnterGameRoom(int index, shared_ptr<Player>& player)
 {
-    gameRooms[index]->players.insert(player);
+    //플레이어 추가
+    gameRooms[index]->AddPlayer(player);
 }
 
 

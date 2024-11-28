@@ -22,7 +22,7 @@ private:
 private:
 	shared_mutex rwLock;
 	map<string, shared_ptr<UserInfo>> users;
-	set<shared_ptr<Player>> InGameplayers;
+	map<int, shared_ptr<Player>> inGameplayers;
 	vector<shared_ptr<GameRoom>> gameRooms;
 	atomic<int> playerIndex = 0;
 public:
@@ -31,8 +31,16 @@ public:
 	void AddUser(string id, string pw, string name);
 	void RemoveUser(string id);
 public:
+	shared_ptr<Player> GetPlayer(int id) {
+		if (inGameplayers.find(id) != inGameplayers.end())
+		{
+			return inGameplayers[id];
+		} 
+
+		return nullptr;
+	}
 	void AddPlayer(shared_ptr<Player>& player);
-	void EnterGame(int index, shared_ptr<Player>& player);
+	void EnterGameRoom(int index, shared_ptr<Player>& player);
 public:
 	string GetPW(string id);
 

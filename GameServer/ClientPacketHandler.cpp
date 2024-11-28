@@ -106,6 +106,12 @@ bool Handle_C_ENTERGAME(shared_ptr<PacketSession>& session, Protocol::C_EnterGam
 
 bool Handle_C_ENTERROOM(shared_ptr<PacketSession>& session, Protocol::C_EnterRoom& packet)
 {
+	int playerIndex = packet.playerindex();
+	shared_ptr<Player> player = GameManager::Get().GetPlayer(playerIndex);
+	int roomIndex = packet.roomid();
+
+	GameManager::Get().EnterGameRoom(roomIndex, player);
+
 	cout << "Handle_C_ENTERROOM" << endl;
 	return false;
 }

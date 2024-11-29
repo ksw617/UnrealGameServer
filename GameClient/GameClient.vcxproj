@@ -168,8 +168,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EnterGame.cpp" />
+    <ClCompile Include="EnterRoom.cpp" />
     <ClCompile Include="GameClient.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameRoomManager.cpp" />
     <ClCompile Include="Loading.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="pch.cpp">
@@ -194,7 +196,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnterGame.h" />
+    <ClInclude Include="EnterRoom.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameRoomManager.h" />
     <ClInclude Include="Loading.h" />
     <ClInclude Include="Login.h" />
     <ClInclude Include="pch.h" />

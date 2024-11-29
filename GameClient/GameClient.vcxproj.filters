@@ -41,6 +41,12 @@
     <Filter Include="01_Scene\04_SelectRoom">
       <UniqueIdentifier>{9daa08a3-5121-4ce8-aaca-6245f578e8ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Scene\05_EnterRoom">
+      <UniqueIdentifier>{538d7d68-5193-40fa-80bb-eb1146a24144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00_Manager\02_GameRoomManager">
+      <UniqueIdentifier>{5a14dd6f-b36a-4287-86d1-146f190f1260}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameClient.cpp">
@@ -85,6 +91,12 @@
     <ClCompile Include="SelectRoom.cpp">
       <Filter>01_Scene\04_SelectRoom</Filter>
     </ClCompile>
+    <ClCompile Include="EnterRoom.cpp">
+      <Filter>01_Scene\05_EnterRoom</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRoomManager.cpp">
+      <Filter>00_Manager\02_GameRoomManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -125,6 +137,12 @@
     </ClInclude>
     <ClInclude Include="SelectRoom.h">
       <Filter>01_Scene\04_SelectRoom</Filter>
+    </ClInclude>
+    <ClInclude Include="EnterRoom.h">
+      <Filter>01_Scene\05_EnterRoom</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRoomManager.h">
+      <Filter>00_Manager\02_GameRoomManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

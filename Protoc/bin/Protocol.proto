@@ -50,7 +50,12 @@ message C_EnterRoom
 
 message S_EnterRoom
 {
-	repeated Player player = 1; 
+	repeated Player players = 1; 
+}
+
+message S_EnterNewbie
+{
+	Player player = 1;
 }
 
 message C_Chat

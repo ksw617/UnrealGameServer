@@ -5,6 +5,7 @@
 #include "Register.h"
 #include "EnterGame.h"
 #include "SelectRoom.h"
+#include "EnterRoom.h"
 
 void SceneManager::LoadScene(SCENE_ID id)
 {
@@ -25,6 +26,9 @@ void SceneManager::LoadScene(SCENE_ID id)
 		break;
 	case SCENE_ID::SELECTROOM:
 		scene = make_shared<SelectRoom>();
+		break;
+	case SCENE_ID::ENTERROOM:
+		scene = make_shared<EnterRoom>();
 		break;
 	default:
 		break;

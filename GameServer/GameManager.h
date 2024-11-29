@@ -41,6 +41,7 @@ public:
 	}
 	void AddPlayer(shared_ptr<Player>& player);
 	void EnterGameRoom(int index, shared_ptr<Player>& player);
+	shared_ptr<GameRoom> GetGameRoom(int index) { return gameRooms[index]; }
 public:
 	string GetPW(string id);
 

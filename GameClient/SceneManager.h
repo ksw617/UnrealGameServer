@@ -9,6 +9,7 @@ enum class SCENE_ID : uint8
 	REGISTER,
 	ENTERGAME,
 	SELECTROOM,
+	ENTERROOM,
 };
 
 

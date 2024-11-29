@@ -5,9 +5,9 @@
 #include "ClientPacketHandler.h"
 #include "GameRoom.h"
 
+
 void GameManager::Init()
 {
-
     gameRooms.resize(3);   //[0][1][2]
 
     for (int i = 0; i < gameRooms.size(); i++)

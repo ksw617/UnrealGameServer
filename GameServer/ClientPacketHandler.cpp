@@ -26,8 +26,8 @@ void ClientPacketHandler::Init()
 	packetHandlers[C_ENTERROOM] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 		{  return HandlePacket<Protocol::C_EnterRoom>(Handle_C_ENTERROOM, session, buffer, len); };
 
-	packetHandlers[C_ENTERROOM] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
-		{	return HandlePacket<Protocol::C_EnterRoom>(Handle_C_ENTERROOM, session, buffer, len); 	};
+	packetHandlers[C_CHAT] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
+		{	return HandlePacket<Protocol::C_Chat>(Handle_C_CHAT, session, buffer, len); 	};
 }
 
 bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
@@ -128,12 +128,14 @@ bool Handle_C_ENTERROOM(shared_ptr<PacketSession>& session, Protocol::C_EnterRoo
 
 bool Handle_C_CHAT(shared_ptr<PacketSession>& session, Protocol::C_Chat& packet)
 {
-	Protocol::S_Chat sendPacket;
+	printf("TEST");
 
-	sendPacket.set_msg(packet.msg());
-
-	auto sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
-	GameManager::Get().GetGameRoom(1)->BroadCast(sendBuffer);
+	//Protocol::S_Chat sendPacket;
+	//
+	//sendPacket.set_msg(packet.msg());
+	//
+	//auto sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
+	//GameManager::Get().GetGameRoom(1)->BroadCast(sendBuffer);
 
 	return true;
 }

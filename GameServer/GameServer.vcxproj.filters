@@ -13,21 +13,6 @@
     <Filter Include="Protobuf">
       <UniqueIdentifier>{3d18b345-8e8d-4d53-b4c6-9a4f62982f99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="00_Manager">
-      <UniqueIdentifier>{3a4611e0-2c1b-4d9c-8a4c-9acb4a25ff72}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00_Manager\00_GameManager">
-      <UniqueIdentifier>{e173ec4a-4654-4e78-b497-a0b923178819}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01_Game">
-      <UniqueIdentifier>{aa4717c3-6d5f-47d7-9168-c7d975536443}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01_Game\00_Player">
-      <UniqueIdentifier>{ce6a19fc-7d4f-4d92-9e54-91bad93ddd83}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01_Game\01_GameRoom">
-      <UniqueIdentifier>{8e777264-50d9-4016-ad31-5104f2179f79}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp">
@@ -45,18 +30,6 @@
     <ClCompile Include="ClientPacketHandler.cpp">
       <Filter>Sesssion</Filter>
     </ClCompile>
-    <ClCompile Include="Singleton.cpp">
-      <Filter>00_Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>00_Manager\00_GameManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>01_Game\00_Player</Filter>
-    </ClCompile>
-    <ClCompile Include="GameRoom.cpp">
-      <Filter>01_Game\01_GameRoom</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -70,18 +43,6 @@
     </ClInclude>
     <ClInclude Include="ClientPacketHandler.h">
       <Filter>Sesssion</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>00_Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>00_Manager\00_GameManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>01_Game\00_Player</Filter>
-    </ClInclude>
-    <ClInclude Include="GameRoom.h">
-      <Filter>01_Game\01_GameRoom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

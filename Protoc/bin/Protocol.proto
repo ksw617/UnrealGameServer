@@ -3,67 +3,55 @@ package Protocol;
 
 message Player
 {
-	string name = 1;
-	int32 type = 2;
+	uint64 id = 1;
+	float x = 2;
+	float y = 3;
+	float z = 4;
+	float yaw = 5;
 }
 
-message C_Login
+message C_LOGIN
 {
-	string id = 1;
-	string pw = 2;
 }
 
-message S_Login
-{
-	bool success = 1;
-}
-
-message C_Register
-{
-	string id = 1;
-	string pw = 2;
-	string name = 3;
-}
-
-message S_Register
+message S_LOGIN
 {
 	bool success = 1;
+	Player player = 2;
 }
 
-message C_EnterGame
+message C_ENTER_GAME
+{
+	uint64 playerID = 1;
+}
+
+message S_ENTER_GAME
+{
+	repeated Player players = 1;
+}
+
+
+message S_SPAWN
 {
 	Player player = 1;
 }
 
-message S_EnterGame
-{
-	bool success = 1;
-	int32 playerIndex = 2;
-	repeated int32 roomIDs = 3;
-}
-
-message C_EnterRoom
-{
-	int32 playerIndex = 1;
-	int32 roomID = 2;
-}
-
-message S_EnterRoom
-{
-	repeated Player players = 1; 
-}
-
-message S_EnterNewbie
+message S_DESPAWN
 {
 	Player player = 1;
 }
 
-message C_Chat
+message C_MOVE
 {
-	string msg = 1;
+	Player player = 1;
 }
 
-message S_Chat
+message S_MOVE
 {
-	string msg = 1;
+	Player player = 1;
+}
+
+message C_LOGOUT
+{
+	uint64 playerID = 1;
 }

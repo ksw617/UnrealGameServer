@@ -1,14 +1,10 @@
 #include "pch.h"
 #include "ClientPacketHandler.h"
 
-#include "GameManager.h"
-
 #include <locale>
 #include <codecvt>
 #include <string>
 
-#include "Player.h"
-#include "GameRoom.h"
 
 void ClientPacketHandler::Init()
 {
@@ -16,18 +12,15 @@ void ClientPacketHandler::Init()
 
 	//Recv
 	packetHandlers[C_LOGIN] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
-		{  return HandlePacket<Protocol::C_Login>(Handle_C_LOGIN, session, buffer, len); };
-	packetHandlers[C_REGISTER] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
-		{  return HandlePacket<Protocol::C_Register>(Handle_C_REGISTER, session, buffer, len); 	};
+		{  return HandlePacket<Protocol::C_LOGIN>(Handle_C_LOGIN, session, buffer, len); };
+	packetHandlers[C_ENTER_GAME] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
+		{  return HandlePacket<Protocol::C_ENTER_GAME>(Handle_C_ENTER_GAME, session, buffer, len); 	};
 
-	packetHandlers[C_ENTERGAME] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
-		{  return HandlePacket<Protocol::C_EnterGame>(Handle_C_ENTERGAME, session, buffer, len); };
+	packetHandlers[C_LOGOUT] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
+		{  return HandlePacket<Protocol::C_LOGOUT>(Handle_C_LOGOUT, session, buffer, len); };
 
-	packetHandlers[C_ENTERROOM] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
-		{  return HandlePacket<Protocol::C_EnterRoom>(Handle_C_ENTERROOM, session, buffer, len); };
-
-	packetHandlers[C_CHAT] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
-		{	return HandlePacket<Protocol::C_Chat>(Handle_C_CHAT, session, buffer, len); 	};
+	packetHandlers[C_MOVE] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
+		{	return HandlePacket<Protocol::C_MOVE>(Handle_C_MOVE, session, buffer, len); 	};
 }
 
 bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
@@ -35,108 +28,40 @@ bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 	printf("Handle_INVALID\n");
 	return false;
 }
-
-bool Handle_C_LOGIN(shared_ptr<PacketSession>& session, Protocol::C_Login& packet)
+	 
+bool Handle_C_LOGIN(shared_ptr<PacketSession>& session, Protocol::C_LOGIN& packet)
 {
-	string id = packet.id();
-	string pw = packet.pw(); 
+	printf("Client Login");
+	Protocol::S_LOGIN sendPacket;
 
-	Protocol::S_Login sendPacket;
+	Protocol::Player* player = new Protocol::Player();
+	player->set_id(0);
+	player->set_x(0);
+	player->set_y(0);
+	player->set_z(0);
+	player->set_yaw(0);
 
-	bool success = GameManager::Get().CheckUser(id);
-	
-	if (success)
-	{
-		success = (pw == GameManager::Get().GetPW(id));
-	}
+	sendPacket.set_success(true);
+	sendPacket.set_allocated_player(player);
 
-	sendPacket.set_success(success);
-
-	auto sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
-	session->Send(sendBuffer);
-	
-
-	return true;
-}
-
-bool Handle_C_REGISTER(shared_ptr<PacketSession>& session, Protocol::C_Register& packet)
-{
-	string id = packet.id();
-
-	Protocol::S_Register sendPacket;
-
-	bool success = !GameManager::Get().CheckUser(id);
-
-	if (success)
-	{
-		string pw = packet.pw();
-		string name = packet.name();
-
-		//Ãß°¡
-		GameManager::Get().AddUser(id, pw, name);
-	}
-
-	sendPacket.set_success(success);
-
-	auto sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
+	shared_ptr<SendBuffer> sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
 	session->Send(sendBuffer);
 	
 	return true;
 }
 
-bool Handle_C_ENTERGAME(shared_ptr<PacketSession>& session, Protocol::C_EnterGame& packet)
+bool Handle_C_ENTER_GAME(shared_ptr<PacketSession>& session, Protocol::C_ENTER_GAME& packet)
 {
-	//Todo
-	auto& p = packet.player();
-
-	wstring_convert<codecvt_utf8<wchar_t>> converter;
-	wstring name = converter.from_bytes(p.name());
-	
-	shared_ptr<Player> player = make_shared<Player>(session, name, (PLAYER_TYPE)p.type());
-	GameManager::Get().AddPlayer(player);
-
-
-	return true;
+	printf("Enter Game");
+	return false;
 }
 
-bool Handle_C_ENTERROOM(shared_ptr<PacketSession>& session, Protocol::C_EnterRoom& packet)
+bool Handle_C_LOGOUT(shared_ptr<PacketSession>& session, Protocol::C_LOGOUT& packet)
 {
-	int playerIndex = packet.playerindex();
-	shared_ptr<Player> player = GameManager::Get().GetPlayer(playerIndex);
-	int roomIndex = packet.roomid();
-
-	Protocol::Player* p = new Protocol::Player;
-
-	wstring_convert<codecvt_utf8<wchar_t>> converter;
-	string utf8Name = converter.to_bytes(player->name);
-
-	p->set_name(utf8Name);
-	p->set_type((int)player->playerType);
-	
-	Protocol::S_EnterNewbie sendPacket;
-	
-	sendPacket.set_allocated_player(p);
-	
-	auto sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
-	
-	GameManager::Get().GetGameRoom(roomIndex)->BroadCast(sendBuffer);
-
-	GameManager::Get().EnterGameRoom(roomIndex, player);
-
-	return true;
+	return false;
 }
 
-bool Handle_C_CHAT(shared_ptr<PacketSession>& session, Protocol::C_Chat& packet)
+bool Handle_C_MOVE(shared_ptr<PacketSession>& session, Protocol::C_MOVE& packet)
 {
-	printf("TEST");
-
-	//Protocol::S_Chat sendPacket;
-	//
-	//sendPacket.set_msg(packet.msg());
-	//
-	//auto sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
-	//GameManager::Get().GetGameRoom(1)->BroadCast(sendBuffer);
-
-	return true;
+	return false;
 }
-			 
